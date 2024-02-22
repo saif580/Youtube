@@ -6,7 +6,6 @@ import { useSearchParams } from "react-router-dom";
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [queryParams] = useSearchParams();
-  console.log(queryParams.get("v"));
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
