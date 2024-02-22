@@ -13,7 +13,7 @@ const Buttonlist = () => {
     "Music",
   ];
   return (
-    <div className="flex">
+    <div className="flex flex-warp">
       {list.map((btnName,index) => (
         <Button key={index} name={btnName} />
       ))}
