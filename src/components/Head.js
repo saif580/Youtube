@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appslice";
 import { cacheResults } from "../utils/searchslice";
-// import dotenv from "dotenv";
-// dotenv.config();
+import { addInitialAndSearchVideos } from "../utils/videosslice";
 
 const Head = () => {
   const [searchQuery, setSerachQuery] = useState("");
@@ -13,10 +12,11 @@ const Head = () => {
   const dispatch = useDispatch();
 
   const searchCache = useSelector((store) => store.search);
+  const fetchVideo = useSelector((store) => store.videos.videos);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {     
+      if (searchCache[searchQuery]) {
         setSearchSuggestions(searchCache[searchQuery]);
       } else {
         getSearchSuggestions();
@@ -29,7 +29,8 @@ const Head = () => {
 
   const getSearchSuggestions = async () => {
     const data = await fetch(
-      `${process.env.REACT_APP_YOUTUBE_SEARCH_API}${searchQuery}`
+      `${process.env.REACT_APP_YOUTUBE_SEARCH_API}${searchQuery}`,
+      { mode: "cors" }
     );
     const json = await data.json();
     setSearchSuggestions(json[1]);
@@ -42,6 +43,21 @@ const Head = () => {
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
+  };
+
+  const fetchSearchResults = async () => {
+    console.log(process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API);
+    const data = await fetch(
+      `${process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API}${searchQuery}`
+    );
+    const json = await data.json();
+    dispatch(addInitialAndSearchVideos(json.items));
+  };
+
+  const sumbitHandler = async (e) => {
+    e.preventDefault();
+    fetchSearchResults();
+    setShowSuggestion(false);
   };
 
   return (
@@ -69,7 +85,7 @@ const Head = () => {
         />
       </div>
       <div className="flex flex-col m-6 col-span-8">
-        <div className="w-auto">
+        <form onSubmit={sumbitHandler} className="w-auto">
           <input
             placeholder="Search"
             className="border rounded-l-full w-1/2 placeholder-opacity-50 pl-[2%]"
@@ -82,15 +98,12 @@ const Head = () => {
           <button className=" border rounded-r-full bg-gray-100 px-5">
             🔍 Search
           </button>
-        </div>
+        </form>
         {showSuggestion && (
           <div>
             <ul className="absolute bg-white px-5 lg:w-[30%] md:w-[30%] shadow-lg rounded-lg">
               {searchSuggestion.map((s) => (
-                <li
-                  key={s}
-                  className="p-1 m-1 hover:bg-gray-100 rounded-lg"
-                >
+                <li key={s} className="p-1 m-1 hover:bg-gray-100 rounded-lg">
                   🔍 {s}
                 </li>
               ))}
