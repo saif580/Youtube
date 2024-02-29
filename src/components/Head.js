@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appslice";
 import { cacheResults } from "../utils/searchslice";
+import { addInitialAndSearchVideos } from "../utils/videosslice";
 // import dotenv from "dotenv";
 // dotenv.config();
 
@@ -16,7 +17,7 @@ const Head = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {     
+      if (searchCache[searchQuery]) {
         setSearchSuggestions(searchCache[searchQuery]);
       } else {
         getSearchSuggestions();
@@ -43,7 +44,21 @@ const Head = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
-  
+
+  const fetchSearchResults = async () => {
+    const data = await fetch(
+      `${process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API}${searchQuery}`
+    );
+    const json = await data.json();
+    dispatch(addInitialAndSearchVideos(json.items));
+  };
+
+  const sumbitHandler = async (e) => {
+    e.preventDefault();
+    fetchSearchResults();
+    setShowSuggestion(false);
+  };
+
   return (
 
     <div className="flex h-100 items-center justify-between bg-beige shadow-md min-w-[1012px]">
@@ -56,7 +71,7 @@ const Head = () => {
 
 
 
-{/*                                           SECTION 1                                                                            */ }
+      {/*                                           SECTION 1                                                                            */}
 
 
       <div className="flex flex-row">
@@ -90,47 +105,40 @@ const Head = () => {
 
 
 
- {/*                                              SECTION 2                                                                                             */}
+      {/*                                              SECTION 2                                                                                             */}
 
 
 
 
 
 
- <div className="flex flex-row flex-shrink-0 w-[600px]">
- 
-    <input
-      placeholder="Search"
-      className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
-      type="text"
-      value={searchQuery}
-      onChange={(e) => setSerachQuery(e.target.value)}
-      onFocus={() => setShowSuggestion(true)}
-      onBlur={() => setShowSuggestion(false)}
-    />
-    <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
-      🔍 Search
-    </button>
-
-  {showSuggestion && (
-    <div  className="absolute w-[70%] mt-1 shadow-lg">
-      <ul className="absolute top-10 bg-white px-5 shadow-lg rounded-lg ">
-        {searchSuggestion.map((s) => (
-          <li key={s} className="p-1 m-1 hover:bg-gray-100 rounded-lg">
-            🔍 {s}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )}
-</div>
-
-
-
-
-
-
-
+      <div className="flex flex-row flex-shrink-0 w-[600px]">
+        <form onSubmit={sumbitHandler} className="flex">
+          <input
+            placeholder="Search"
+            className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSerachQuery(e.target.value)}
+            onFocus={() => setShowSuggestion(true)}
+            onBlur={() => setShowSuggestion(false)}
+          />
+          <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
+            🔍 Search
+          </button>
+        </form>
+        {showSuggestion && (
+          <div className="absolute w-[70%] mt-1 shadow-lg">
+            <ul className="absolute top-10 bg-white px-5 shadow-lg rounded-lg ">
+              {searchSuggestion.map((s) => (
+                <li key={s} className="p-1 m-1 hover:bg-gray-100 rounded-lg">
+                  🔍 {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
 
 
 
@@ -140,7 +148,14 @@ const Head = () => {
 
 
 
-{/*                                                          LAST SECTION                                          */}
+
+
+
+
+
+
+
+      {/*                                                          LAST SECTION                                          */}
 
 
 
