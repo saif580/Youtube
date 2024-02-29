@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appslice";
 import { cacheResults } from "../utils/searchslice";
-import { addInitialAndSearchVideos } from "../utils/videosslice";
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const Head = () => {
   const [searchQuery, setSerachQuery] = useState("");
@@ -12,7 +13,6 @@ const Head = () => {
   const dispatch = useDispatch();
 
   const searchCache = useSelector((store) => store.search);
-  const fetchVideo = useSelector((store) => store.videos.videos);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,8 +29,7 @@ const Head = () => {
 
   const getSearchSuggestions = async () => {
     const data = await fetch(
-      `${process.env.REACT_APP_YOUTUBE_SEARCH_API}${searchQuery}`,
-      { mode: "cors" }
+      `${process.env.REACT_APP_YOUTUBE_SEARCH_API}${searchQuery}`
     );
     const json = await data.json();
     setSearchSuggestions(json[1]);
@@ -45,24 +44,11 @@ const Head = () => {
     dispatch(toggleMenu());
   };
 
-  const fetchSearchResults = async () => {
-    console.log(process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API);
-    const data = await fetch(
-      `${process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API}${searchQuery}`
-    );
-    const json = await data.json();
-    dispatch(addInitialAndSearchVideos(json.items));
-  };
-
-  const sumbitHandler = async (e) => {
-    e.preventDefault();
-    fetchSearchResults();
-    setShowSuggestion(false);
-  };
-
   return (
-    <div className="grid grid-flow-col p-0 shadow-md">
-      <div className="flex col-span-3 h-20">
+    <div className="flex h-100 items-center justify-between bg-beige shadow-md min-w-[1012px]">
+      {/*                                           SECTION 1                                                                            */}
+
+      <div className="flex flex-row">
         <button
           onClick={toggleMenuHandler}
           className="items-center px-2  text-black hover:text-gray-700 focus:outline-none focus:shadow-outline-blue"
@@ -79,29 +65,31 @@ const Head = () => {
           </svg>
         </button>
         <img
-          className=" w-44"
+          className="w-44 min-w-40"
           src="https://t3.ftcdn.net/jpg/03/00/38/90/360_F_300389025_b5hgHpjDprTySl8loTqJRMipySb1rO0I.jpg"
           alt="youtube-log"
         />
       </div>
-      <div className="flex flex-col m-6 col-span-8">
-        <form onSubmit={sumbitHandler} className="w-auto">
-          <input
-            placeholder="Search"
-            className="border rounded-l-full w-1/2 placeholder-opacity-50 pl-[2%]"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSerachQuery(e.target.value)}
-            onFocus={() => setShowSuggestion(true)}
-            onBlur={() => setShowSuggestion(false)}
-          />
-          <button className=" border rounded-r-full bg-gray-100 px-5">
-            🔍 Search
-          </button>
-        </form>
+
+      {/*                                              SECTION 2                                                                                             */}
+
+      <div className="flex flex-row flex-shrink-0 w-[600px]">
+        <input
+          placeholder="Search"
+          className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSerachQuery(e.target.value)}
+          onFocus={() => setShowSuggestion(true)}
+          onBlur={() => setShowSuggestion(false)}
+        />
+        <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
+          🔍 Search
+        </button>
+
         {showSuggestion && (
-          <div>
-            <ul className="absolute bg-white px-5 lg:w-[30%] md:w-[30%] shadow-lg rounded-lg">
+          <div className="absolute w-[70%] mt-1 shadow-lg">
+            <ul className="absolute top-10 bg-white px-5 shadow-lg rounded-lg ">
               {searchSuggestion.map((s) => (
                 <li key={s} className="p-1 m-1 hover:bg-gray-100 rounded-lg">
                   🔍 {s}
@@ -111,9 +99,12 @@ const Head = () => {
           </div>
         )}
       </div>
-      <div className="col-span-1 w-10 mt-6 mb-6 mx-auto ">
+
+      {/*                                                          LAST SECTION                                          */}
+
+      <div className="flex flex-row flex-shrink-0">
         <img
-          className="rounded-full "
+          className="rounded-full h-9"
           src="https://preview.redd.it/high-resolution-remakes-of-the-old-default-youtube-avatar-v0-bgwxf7bec4ob1.png?width=640&crop=smart&auto=webp&s=99d5fec405e0c7fc05f94c1e1754f7dc29ccadbd"
           alt="user-icon"
         />
