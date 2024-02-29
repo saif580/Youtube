@@ -8,27 +8,27 @@ const Sidebar = () => {
   return (
     <>
       {toggleMenu && (
-        <div className="w-48  border p-8">
+        <div className="border p-8 w-[200px] ">
           <ul>
-            <Link to={"/"}><li>Home</li></Link>
-            <li>Shorts</li>
-            <li>Subscription</li>
-            <li>YouTube Music</li>
+            <Link to={"/"}><li className="h-[30px] bg-gray-200 rounded-md pl-3">Home</li></Link>
+            <li className="h-[30px] rounded-md pl-3">Shorts</li>
+            <li className="h-[30px] rounded-md pl-3">Subscription</li>
+            <li className="h-[30px] w-[200px] rounded-md pl-3">YouTube Music</li>
           </ul>
-          <h1 className="font-bold pt-5">You</h1>
+          <h1 className="font-bold mt-5 h-[30px]">You</h1>
           <ul>
-            <li>Your channel</li>
-            <li>History</li>
-            <li>Your videos</li>
-            <li>Watch Later</li>
-            <li>Downloads</li>
+            <li className="h-[30px] rounded-md pl-3">Your channel</li>
+            <li className="h-[30px] rounded-md pl-3">History</li>
+            <li className="h-[30px] rounded-md pl-3">Your videos</li>
+            <li className="h-[30px] rounded-md pl-3">Watch Later</li>
+            <li className="h-[30px] rounded-md pl-3">Downloads</li>
           </ul>
-          <h1 className="font-bold pt-5">Watch Later</h1>
+          <h1 className="font-bold mt-5 h-[30px]">Watch Later</h1>
           <ul>
-            <li>Music</li>
-            <li>Sports</li>
-            <li>Gaming</li>
-            <li>Movies</li>
+            <li className="h-[30px] rounded-md pl-3">Music</li>
+            <li className="h-[30px] rounded-md pl-3">Sports</li>
+            <li className="h-[30px] rounded-md pl-3">Gaming</li>
+            <li className="h-[30px] rounded-md pl-3">Movies</li>
           </ul>
         </div>
       )}
@@ -37,3 +37,13 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
+
+
+
+
+
+
+
+// rounded cursor-pointer hover:bg-gray-300

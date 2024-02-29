@@ -13,12 +13,13 @@ const Buttonlist = () => {
     "Music",
   ];
   return (
-    <div className="flex flex-warp">
+    <div className="flex flex-row justify-center">
       {list.map((btnName,index) => (
         <Button key={index} name={btnName} />
       ))}
     </div>
   );
 };
-
 export default Buttonlist;
+
+
