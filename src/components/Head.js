@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appslice";
 import { cacheResults } from "../utils/searchslice";
-// import dotenv from "dotenv";
-// dotenv.config();
+import { addInitialAndSearchVideos } from "../utils/videosslice";
 
 const Head = () => {
   const [searchQuery, setSerachQuery] = useState("");
@@ -13,6 +12,7 @@ const Head = () => {
   const dispatch = useDispatch();
 
   const searchCache = useSelector((store) => store.search);
+  const fetchVideo = useSelector((store) => store.videos.videos);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,7 +29,8 @@ const Head = () => {
 
   const getSearchSuggestions = async () => {
     const data = await fetch(
-      `${process.env.REACT_APP_YOUTUBE_SEARCH_API}${searchQuery}`
+      `${process.env.REACT_APP_YOUTUBE_SEARCH_API}${searchQuery}`,
+      { mode: "cors" }
     );
     const json = await data.json();
     setSearchSuggestions(json[1]);
@@ -42,6 +43,20 @@ const Head = () => {
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
+  };
+
+  const fetchSearchResults = async () => {
+    const data = await fetch(
+      `${process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API}${searchQuery}`
+    );
+    const json = await data.json();
+    dispatch(addInitialAndSearchVideos(json.items));
+  };
+
+  const sumbitHandler = async (e) => {
+    e.preventDefault();
+    fetchSearchResults();
+    setShowSuggestion(false);
   };
 
   return (
@@ -74,19 +89,20 @@ const Head = () => {
       {/*                                              SECTION 2                                                                                             */}
 
       <div className="flex flex-row flex-shrink-0 w-[600px]">
-        <input
-          placeholder="Search"
-          className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSerachQuery(e.target.value)}
-          onFocus={() => setShowSuggestion(true)}
-          onBlur={() => setShowSuggestion(false)}
-        />
-        <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
-          🔍 Search
-        </button>
-
+        <form onSubmit={sumbitHandler}>
+          <input
+            placeholder="Search"
+            className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSerachQuery(e.target.value)}
+            onFocus={() => setShowSuggestion(true)}
+            onBlur={() => setShowSuggestion(false)}
+          />
+          <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
+            🔍 Search
+          </button>
+        </form>
         {showSuggestion && (
           <div className="absolute w-[70%] mt-1 shadow-lg">
             <ul className="absolute top-10 bg-white px-5 shadow-lg rounded-lg ">
