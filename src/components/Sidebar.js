@@ -17,11 +17,11 @@ const Sidebar = () => {
           </ul>
           <h1 className="font-bold mt-5 h-[30px]">You</h1>
           <ul>
-            <li className="h-[30px] rounded-md pl-3">Your channel</li>
-            <li className="h-[30px] rounded-md pl-3">History</li>
-            <li className="h-[30px] rounded-md pl-3">Your videos</li>
-            <li className="h-[30px] rounded-md pl-3">Watch Later</li>
-            <li className="h-[30px] rounded-md pl-3">Downloads</li>
+            <li className="h-[30px] rounded-md pl-3">©🙂 Your channel</li>
+            <li className="h-[30px] rounded-md pl-3">👴 History</li>
+            <li className="h-[30px] rounded-md pl-3">😎 Your videos</li>
+            <li className="h-[30px] rounded-md pl-3">🫡 Watch Later</li>
+            <li className="h-[30px] rounded-md pl-3">😇 Downloads</li>
           </ul>
           <h1 className="font-bold mt-5 h-[30px]">Watch Later</h1>
           <ul>
