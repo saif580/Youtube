@@ -1,7 +1,7 @@
 # YouTube 
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fyoutube-mocha-eta.vercel.app%2F)](https://youtube-mocha-eta.vercel.app/)
-[![GitHub stars](https://img.shields.io/github/stars/YourGitHubUsername/YourRepoName)](https://github.com/saif580/Youtube/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/saif580/Youtube)](https://github.com/saif580/Youtube/stargazers)
 
 <b>YouTube Clone</b>
 This project is a YouTube-like video streaming application that I've built from scratch using React, Redux, YouTube API, Google Search API, and more. It includes features such as debouncing, search suggestions, a watch page, live chat through API polling, and a comment section.
