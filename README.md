@@ -28,3 +28,8 @@ This project is a YouTube-like video streaming application that I've built from 
 - **API Polling**: Enabling real-time updates for live chat.
 
 
+![Screenshot (104)](https://github.com/saif580/Youtube/assets/29210607/8e6eda72-9101-4ab4-aabe-5c31f559c11d)
+![Screenshot (105)](https://github.com/saif580/Youtube/assets/29210607/3303eb4d-71fb-473a-9090-c2f7a710c854)
+![Screenshot (106)](https://github.com/saif580/Youtube/assets/29210607/f4917c33-093c-4b61-9d87-f39b68311ba3)
+![Screenshot (107)](https://github.com/saif580/Youtube/assets/29210607/aece205d-1bb9-4bfe-8a24-f2810a84a78d)
+![Screenshot (108)](https://github.com/saif580/Youtube/assets/29210607/a118bb31-bc68-414b-87e9-dcc905ad6fa3)
