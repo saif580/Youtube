@@ -8,15 +8,15 @@ const Sidebar = () => {
   return (
     <>
       {toggleMenu && (
-        <div className="border p-8 w-[200px] ">
-          <ul>
+        <div className="p-8 w-[200px]">
+          <ul className="border-b-2 pb-2">
             <Link to={"/"}><li className="h-[30px] bg-gray-200 rounded-md pl-3">🏠 Home</li></Link>
             <li className="h-[30px] rounded-md pl-3">🩳 Shorts</li>
             <li className="h-[30px] rounded-md pl-3">🎞️ Subscription</li>
             <li className="h-[30px] w-[200px] rounded-md pl-3">🎷 YouTube Music</li>
           </ul>
           <h1 className="font-bold mt-5 h-[30px]">You</h1>
-          <ul>
+          <ul className="border-b-2 pb-2">
             <li className="h-[30px] rounded-md pl-3">🙂 Your channel</li>
             <li className="h-[30px] rounded-md pl-3">👴 History</li>
             <li className="h-[30px] rounded-md pl-3">😎 Your videos</li>
@@ -24,7 +24,7 @@ const Sidebar = () => {
             <li className="h-[30px] rounded-md pl-3">😇 Downloads</li>
           </ul>
           <h1 className="font-bold mt-5 h-[30px]">Watch Later</h1>
-          <ul>
+          <ul className="">
             <li className="h-[30px] rounded-md pl-3">Music</li>
             <li className="h-[30px] rounded-md pl-3">Sports</li>
             <li className="h-[30px] rounded-md pl-3">Gaming</li>

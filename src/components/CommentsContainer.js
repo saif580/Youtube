@@ -29,7 +29,7 @@ const Comment = ({ data }) => {
 
 const CommentList = ({ comments }) => {
   return comments.map((comment, index) => (
-    <div key={index}>
+    <div key={index} className="">
       <Comment key={index} data={comment} />
       {comment.replies && comment.replies.length > 0 && (
         <div className="pl-5 border border-l-black ml-5">

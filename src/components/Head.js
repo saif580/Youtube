@@ -60,19 +60,13 @@ const Head = () => {
   };
 
   return (
-
-    <div className="flex h-100 items-center justify-between bg-beige shadow-md min-w-[1012px]">
-
-
-
-
+    <div className="flex h-100 items-center justify-between bg-beige min-w-[1012px]">
 
 
 
 
 
       {/*                                           SECTION 1                                                                            */}
-
 
       <div className="flex flex-row">
         <button
@@ -105,27 +99,24 @@ const Head = () => {
 
 
 
+
+
       {/*                                              SECTION 2                                                                                             */}
 
-
-
-
-
-
       <div className="flex flex-row flex-shrink-0 w-[600px]">
-        <form onSubmit={sumbitHandler} className="flex">
-          <input
-            placeholder="Search"
-            className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSerachQuery(e.target.value)}
-            onFocus={() => setShowSuggestion(true)}
-            onBlur={() => setShowSuggestion(false)}
-          />
-          <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
-            🔍 Search
-          </button>
+        <form onSubmit={sumbitHandler} className="flex flex-row w-[600px]">
+        <input
+      placeholder="Search"
+      className="border rounded-l-full placeholder-opacity-50  h-8 w-[70%] pl-[2%]"
+      type="text"
+      value={searchQuery}
+      onChange={(e) => setSerachQuery(e.target.value)}
+      onFocus={() => setShowSuggestion(true)}
+      onBlur={() => setShowSuggestion(false)}
+    />
+    <button className="border rounded-r-full bg-gray-100 px-4 h-8 relative bottom-0.4">
+      🔍 Search
+    </button>
         </form>
         {showSuggestion && (
           <div className="absolute w-[70%] mt-1 shadow-lg">
@@ -140,27 +131,7 @@ const Head = () => {
         )}
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       {/*                                                          LAST SECTION                                          */}
-
-
-
-
-
 
       <div className="flex flex-row flex-shrink-0">
         <img
