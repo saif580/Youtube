@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# YouTube 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fyoutube-mocha-eta.vercel.app%2F)](https://youtube-mocha-eta.vercel.app/)
+[![GitHub stars](https://img.shields.io/github/stars/YourGitHubUsername/YourRepoName)](https://github.com/saif580/youtube/stargazers)
 
-## Available Scripts
+<b>YouTube Clone</b>
+This project is a YouTube-like video streaming application that I've built from scratch using React, Redux, YouTube API, Google Search API, and more. It includes features such as debouncing, search suggestions, a watch page, live chat through API polling, and a comment section.
 
-In the project directory, you can run:
+## Project Structure
 
-### `npm start`
+- **Home Page:** Recreated the YouTube home page layout. Integrated YouTube API to fetch trending videos and recommendations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Search:** Implemented search functionality using the Google Search API. Incorporated debouncing for optimized search requests and improved performance. Display search suggestions for a user-friendly experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Watch Page:** Created a watch page to view individual videos. Integrated YouTube API to fetch video details and related content.
 
-### `npm test`
+- **Live Chat:** Implemented a live chat feature using API polling for real-time communication. Users can engage in discussions while watching videos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Comment Section:** Developed a comment section for each video. Users can leave comments, replies, and reactions.
 
-### `npm run build`
+## Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React**: Building the user interface.
+- **Redux**: Managing application state.
+- **YouTube API**: Fetching video details and recommendations.
+- **Google Search API**: Powering the search functionality.
+- **Debouncing**: Enhancing search performance.
+- **API Polling**: Enabling real-time updates for live chat.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
