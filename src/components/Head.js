@@ -4,7 +4,6 @@ import { toggleMenu } from "../utils/appslice";
 import { cacheResults } from "../utils/searchslice";
 import { addInitialAndSearchVideos } from "../utils/videosslice";
 
-
 const Head = () => {
   const [searchQuery, setSerachQuery] = useState("");
   const [searchSuggestion, setSearchSuggestions] = useState([]);
@@ -46,7 +45,10 @@ const Head = () => {
 
   const fetchSearchResults = async () => {
     const data = await fetch(
-      `${process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API}${searchQuery}`
+      process.env.REACT_APP_YOUTUBE_SEARCH_RESULT_API +
+        process.env.REACT_APP_GOOGLE_API_KEY +
+        "&q=" +
+        searchQuery
     );
     const json = await data.json();
     dispatch(addInitialAndSearchVideos(json.items));
