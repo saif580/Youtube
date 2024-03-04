@@ -3,18 +3,21 @@ import VideoCard, { AdVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addInitialAndSearchVideos } from "../utils/videosslice";
+// import { youtubeVideosApi } from "../constants/helper";
 
 const Videocontainer = () => {
   const dispatch = useDispatch();
   const fetchVideo = useSelector((store) => store.videos.videos);
   const getVideos = async () => {
-    const data = await fetch(process.env.REACT_APP_YOUTUBE_VIDEOS_API);
+    const data = await fetch(
+      process.env.REACT_APP_YOUTUBE_VIDEOS_API +
+        process.env.REACT_APP_GOOGLE_API_KEY
+    );
     const json = await data.json();
     dispatch(addInitialAndSearchVideos(json.items));
   };
   useEffect(() => {
     getVideos();
-
   }, []);
   return (
     <div className="flex flex-wrap  justify-center">
